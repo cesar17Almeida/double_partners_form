@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "175464595726",
+    "project_id": "double-partners-form",
+    "storage_bucket": "double-partners-form.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175464595726:android:555ebe40b7e520823d575f",
+        "android_client_info": {
+          "package_name": "com.cesaralmeida.double_partners_form"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175464595726-6rcml3kscgp30mu63k7jme50ue6t1rj4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQY3E4Sm_uklEAzdhaK2SZ36ZTIawvhXU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175464595726-6rcml3kscgp30mu63k7jme50ue6t1rj4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
