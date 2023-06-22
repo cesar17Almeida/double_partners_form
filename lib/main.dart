@@ -1,3 +1,4 @@
+import 'package:double_partners_form/utils/app_constants.dart';
 import 'package:double_partners_form/views/auth_page.dart';
 import 'package:double_partners_form/views/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -46,8 +47,8 @@ class MainPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
-            return const Center(
-              child: Text('Por favor revisa tu conexión a internet'),
+            return Center(
+              child: Text(AppConstants.errorInternetIssue),
             );
           }
           if (snapshot.hasData) {

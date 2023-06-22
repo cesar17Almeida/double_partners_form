@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -22,7 +20,7 @@ class AuthController extends GetxController {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       result = false;
     }
     return result;
@@ -56,51 +54,27 @@ class AuthController extends GetxController {
     return result;
   }
 
-  Stream<DocumentSnapshot> getAddressListener () {
+  Stream<DocumentSnapshot> getAddressListener() {
     String? uid = getUid().currentUser?.uid.toString();
-    DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc(uid);
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('users').doc(uid);
     return documentReference.snapshots();
   }
 
-  deleteAddress (int index) async {
+  deleteAddress(int index) async {
     String? uid = getUid().currentUser?.uid.toString();
 
-    try {
-      DocumentSnapshot document =
-      await FirebaseFirestore.instance.collection('users').doc(uid).get();
+    DocumentSnapshot document =
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
 
-      // Map<String, dynamic> jsonData = json.decode(
-      //     document['array_address'][index]);
-      List addressArray = document['array_address'];
-      print(addressArray.length);
-      addressArray.removeAt(index);
-      print(addressArray.length);
+    // Map<String, dynamic> jsonData = json.decode(
+    //     document['array_address'][index]);
+    List addressArray = document['array_address'];
+    addressArray.removeAt(index);
 
-      FirebaseFirestore.instance.collection('users').doc(uid).update({
-        'array_address': addressArray
-      });
-    } catch (e) {
-      print (uid);
-    }
-    print(uid);
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .update({'array_address': addressArray});
   }
-// checkUserData() async {
-//   String? uid = getUid().currentUser?.uid.toString();
-//   String? email = getUid().currentUser?.email.toString();
-//   String? name = getUid().currentUser?.displayName.toString() ?? '';
-//
-//   DocumentSnapshot userData =
-//   await FirebaseFirestore.instance.collection('users').doc(uid).get();
-//   if (!userData.exists) {
-//     FirebaseFirestore.instance.collection('users').doc(uid).set({
-//       'name': email,
-//       'first_name': name,
-//       'last_name': '',
-//       'is_premium': false,
-//       'phone': '',
-//       'tutorial_done': false
-//     });
-//   }
-//
-// }
 }

@@ -1,4 +1,5 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:double_partners_form/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,7 @@ class HomeNewAddress extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text('Nueva Dirección'),
+          Text(AppConstants.newAddressTitle),
           GestureDetector(
               onTap: () {
                 Navigator.pop(context);
@@ -64,8 +65,7 @@ class HomeNewAddress extends StatelessWidget {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.allow(
-                            RegExp("[A-z-0-9-#-]")
-                        )
+                            RegExp("[A-z-0-9-#-]"))
                       ],
                       validator: (value) =>
                           value!.isEmpty ? 'Ingrese su País' : null,
@@ -98,9 +98,7 @@ class HomeNewAddress extends StatelessWidget {
                     maxLength: 30,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(
-                          RegExp("[A-z-0-9-#-]")
-                      )
+                      FilteringTextInputFormatter.allow(RegExp("[A-z-0-9-#-]"))
                     ],
                     validator: (value) =>
                         value!.length <= 2 ? 'Requerido' : null,
@@ -129,9 +127,7 @@ class HomeNewAddress extends StatelessWidget {
                     maxLength: 35,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(
-                          RegExp("[A-z-0-9-#-]")
-                      )
+                      FilteringTextInputFormatter.allow(RegExp("[A-z-0-9-#-]"))
                     ],
                     validator: (value) => value!.length <= 2
                         ? 'Ingresa una dirección válida'
@@ -162,15 +158,14 @@ class HomeNewAddress extends StatelessWidget {
                       } else {
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Ha ocurrido un error')),
+                            SnackBar(
+                                content: Text(AppConstants.errorGeneralIssue)),
                           );
                         }
                       }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text('Por favor revise el formulario')),
+                        SnackBar(content: Text(AppConstants.errorFormIssue)),
                       );
                     }
                   },
@@ -180,7 +175,7 @@ class HomeNewAddress extends StatelessWidget {
                     backgroundColor:
                         MaterialStateProperty.all<Color>(AppColors.primary),
                   ),
-                  child: const Text('Resgistrarse'))
+                  child: Text(AppConstants.newAddress))
             ],
           ),
         ),

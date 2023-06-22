@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:double_partners_form/utils/app_colors.dart';
+import 'package:double_partners_form/utils/app_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -30,7 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
   String _password = '';
   String _confirmPassword = '';
   late String userBirthDate;
-  String datePickerValue = 'Seleccione fecha';
+  String datePickerValue = AppConstants.hintDate;
   final _signUpKey = GlobalKey<FormState>();
   DateTime dateTimestamp = DateTime.now();
   late DateTime nowDate =
@@ -44,10 +45,10 @@ class _SignUpPageState extends State<SignUpPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Stack(
-          children: const <Widget>[
+          children: <Widget>[
             Text(
-              'Registro',
-              style: TextStyle(color: Colors.black),
+              AppConstants.titleSignUp,
+              style: const TextStyle(color: Colors.black),
             ),
           ],
         ),
@@ -457,15 +458,15 @@ class _SignUpPageState extends State<SignUpPage> {
       if (e.code == 'weak-password') {
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-              content: Text('Contraseña debil, por favor elije otra')),
+          SnackBar(
+              content: Text(AppConstants.errorPasswordWeak)),
         );
       }
       if (e.code == 'email-already-in-use') {
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-              content: Text('Correo ya está en uso, por favor elije otro')),
+          SnackBar(
+              content: Text(AppConstants.emailInUse)),
         );
       }
     }
